@@ -10,6 +10,6 @@ En el directorio, se puede utilizar:
 
 Instala las dependencias necesarias para el proyecto.\
 
-### `npm start`
+### `npm run dev`
 
 Corre la aplicación en el puerto descripto en el archivo .env de variables de entorno o en el puerto 5500 por defecto.\
