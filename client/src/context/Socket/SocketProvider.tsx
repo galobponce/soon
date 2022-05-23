@@ -1,4 +1,4 @@
-import Peer from "simple-peer";
+import Peer, { Instance } from "simple-peer";
 import { io } from 'socket.io-client';
 import { FC, useEffect, useRef, useState } from "react";
 import { IChildrenProps, ICall, videoRef } from "../../types/common";
@@ -14,7 +14,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
   
   // Referencias a objetos que se van a mostrar en pantalla
   const userVideoRef = useRef<videoRef>({} as videoRef);
-  const connectionRef = useRef({});
+  const connectionRef = useRef<Instance>({} as Instance);
   const otherUserVideoRef = useRef<videoRef>({} as videoRef);
 
   
@@ -109,10 +109,25 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
     connectionRef.current = peer;
   };
 
+  // Cortar conexión
+  const leaveCall = () => {
+    setCallEnded(true);
+    connectionRef.current.destroy();
+    window.location.reload();
+  };
 
   return (
     <SocketContext.Provider value={{
-
+      myName,
+      setMyName,
+      call,
+      callEnded,
+      callAccepted,
+      mySocketServerId,
+      stream,
+      answer,
+      callById,
+      leaveCall
     }}>
       { children }
     </SocketContext.Provider>
