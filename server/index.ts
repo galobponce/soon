@@ -22,9 +22,7 @@ const io = new Server(httpServer, {
 io.on("connection", (socket: Socket) => {
 
 
-    // Le mandamos su id para confirmar la conexión y
-    // que se identifique a nivel usuario
-    // (Tener en cuenta que el id de socket se utiliza como id de usuario)
+	// Le mandamos un id para confirmar la conexión y para que la almacene
 	socket.emit("socket-id", socket.id);
 
 
