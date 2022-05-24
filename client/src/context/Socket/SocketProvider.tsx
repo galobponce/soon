@@ -2,7 +2,7 @@ import { io } from 'socket.io-client';
 import Peer, { Instance } from "simple-peer";
 import { SocketContext } from "./SocketContext";
 import { FC, useEffect, useRef, useState } from "react";
-import { IChildrenProps, ICall, videoRef } from "../../types/common";
+import { IChildrenProps, ICall } from "../../types/common";
 
 
 // Me conecto al socket del server
@@ -13,9 +13,9 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
 
   
   // Referencias a objetos que se van a mostrar en pantalla
-  const userVideoRef = useRef<videoRef>({} as videoRef);
+  const myVideoRef = useRef<HTMLVideoElement>({} as HTMLVideoElement);
   const connectionRef = useRef<Instance>({} as Instance);
-  const otherUserVideoRef = useRef<videoRef>({} as videoRef);
+  const otherUserVideoRef = useRef<HTMLVideoElement>({} as HTMLVideoElement);
 
   
   // Estado del contexto
@@ -36,7 +36,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
         setStream(currentStream); // Almaceno el video y audio
 
         // Seteo el audio y video del usuario en la ref
-        userVideoRef.current.srcObject = currentStream;
+        myVideoRef.current.srcObject = currentStream;
       });
 
     // Almaceno el id de nuestro socket server cuando nos lo manda
@@ -125,6 +125,8 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
       callAccepted,
       mySocketServerId,
       stream,
+      myVideoRef,
+      otherUserVideoRef,
       answer,
       callById,
       leave
