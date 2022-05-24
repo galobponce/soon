@@ -5,8 +5,5 @@ export const useCallFormStyles = makeStyles(() => createStyles({
 		padding: '1rem',
 		display: 'flex',
 		flexFlow: 'row nowrap',
-	},
-	textField: {
-		marginBottom: '.5rem'
 	}
 }));

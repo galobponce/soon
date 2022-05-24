@@ -16,7 +16,7 @@ const CallForm: FC = () => {
     <Paper elevation={3} className={styles.callFormContainer}>
       <Container>
         <Typography gutterBottom variant="h6">Account Info</Typography>
-        <TextField label="Name" value={myName} onChange={(e) => setMyName(e.target.value)} fullWidth className={styles.textField} />
+        <TextField label="Name" value={myName} onChange={(e) => setMyName(e.target.value)} fullWidth style={{marginBottom: '.5rem'}} />
         <CopyToClipboard text={mySocketServerId}>
           <Button variant="contained" color="primary" fullWidth startIcon={<Assignment fontSize="large" />}>
             Copy Your ID
@@ -25,7 +25,7 @@ const CallForm: FC = () => {
       </Container>
       <Container>
         <Typography gutterBottom variant="h6">Make a call</Typography>
-        <TextField label="ID to call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} fullWidth className={styles.textField} />
+        <TextField label="ID to call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} fullWidth style={{marginBottom: '.5rem'}} />
         {callAccepted && !callEnded ? (
           <Button variant="contained" color="secondary" startIcon={<PhoneDisabled fontSize="large" />} fullWidth onClick={leave}>
             Hang Up
