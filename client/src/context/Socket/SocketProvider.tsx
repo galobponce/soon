@@ -110,7 +110,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
   };
 
   // Cortar conexión
-  const leaveCall = () => {
+  const leave = () => {
     setCallEnded(true);
     connectionRef.current.destroy();
     window.location.reload();
@@ -127,7 +127,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
       stream,
       answer,
       callById,
-      leaveCall
+      leave
     }}>
       { children }
     </SocketContext.Provider>

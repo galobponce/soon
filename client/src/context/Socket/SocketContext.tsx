@@ -1,7 +1,17 @@
-import { createContext } from "react";
+import { createContext, Dispatch, SetStateAction } from "react";
+import { ICall } from '../../types/common';
 
 export interface ISocketContext {
-	algo: string;
+	myName: string;
+	setMyName: Dispatch<SetStateAction<string>>;
+	call: ICall;
+	callEnded: boolean;
+	callAccepted: boolean;
+	mySocketServerId: string;
+	stream: MediaStream;
+	answer: () => void;
+	callById: (id: string) => void;
+	leave: () => void;
 };
 
-export const SocketContext = createContext({});
+export const SocketContext = createContext<ISocketContext>({} as ISocketContext);

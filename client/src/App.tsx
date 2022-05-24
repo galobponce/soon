@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Header, Notifications, VideoPlayer, CallForm } from './components';
 import { useAppStyles } from './appStyles';
 import { SocketProvider } from './context/Socket/SocketProvider';
+import { Header, Notifications, VideoPlayer, CallForm } from './components';
 
 
 const App: FC = () => {
