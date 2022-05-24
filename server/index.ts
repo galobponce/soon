@@ -34,6 +34,7 @@ io.on("connection", (socket: Socket) => {
 
 	// Cuando nos piden llamar a un usuario
 	socket.on("call-user", ({ from, name, user, data }) => {
+		console.log(data);
 		io.to(user).emit("call-user", { from, name, data });
 	});
 
