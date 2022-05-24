@@ -1,8 +1,8 @@
-import Peer, { Instance } from "simple-peer";
 import { io } from 'socket.io-client';
+import Peer, { Instance } from "simple-peer";
+import { SocketContext } from "./SocketContext";
 import { FC, useEffect, useRef, useState } from "react";
 import { IChildrenProps, ICall, videoRef } from "../../types/common";
-import { SocketContext, ISocketContext } from "./SocketContext";
 
 
 // Me conecto al socket del server
@@ -60,7 +60,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
     // Cuando el otro usuario nos mande una señal de confirmación de
     // conexión, avisamos al server que queremos responder la llamada
     peer.on('signal', (data) => {
-      socket.emit('answer-call', { to: call.from, signal: data });
+      socket.emit('answer-call', { to: call.from, data });
     });
 
     // Cuando el otro usuario nos mande sus datos de video y
