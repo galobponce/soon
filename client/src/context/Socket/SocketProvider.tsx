@@ -6,7 +6,7 @@ import { IChildrenProps, ICall } from "../../types/common";
 
 
 // Me conecto al socket del server
-const socket = io('http://localhost:5500');
+const socket = io('https://soon-rtc.herokuapp.com/');
 
 
 export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
