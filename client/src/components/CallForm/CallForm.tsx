@@ -12,6 +12,17 @@ const CallForm: FC = () => {
 
   const styles = useCallFormStyles();
 
+  const handleCall = () => {
+    
+    // Verificamos que el usuario tenga nombre
+    if (!myName.trim()) {
+      alert('Name is required');
+      return;
+    }
+
+    callById(idToCall);
+  };
+
   return (
     <Paper elevation={3} className={styles.callFormContainer}>
       <Container>
@@ -31,7 +42,7 @@ const CallForm: FC = () => {
             Hang Up
           </Button>
         ) : (
-          <Button variant="contained" color="primary" startIcon={<Phone fontSize="large" />} fullWidth onClick={() => callById(idToCall)}>
+          <Button variant="contained" color="primary" startIcon={<Phone fontSize="large" />} fullWidth onClick={() => handleCall()}>
             Call
           </Button>
         )}
