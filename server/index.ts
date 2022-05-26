@@ -1,28 +1,12 @@
 import * as http from 'http';
-import * as cors  from "cors";
-import * as express from 'express';
 import { Server, Socket } from 'socket.io';
 
 
-// Creamos aplicacion de express
-const app = express();
-
-
 // Creamos servidor http
-const httpServer = http.createServer(app);
-
-
-// Indicamos a app que utilize módulo de cors
-app.use(cors());
+const httpServer = http.createServer();
 
 
 const port = Number(process.env.DEFAULT_PORT) || 5500;
-
-
-// Ruta índice para saber si nuestra aplicación funciona correctamente
-app.get('/', (_, res) => {
-	res.send('Running');
-});
 
 
 // Creamos un socket indicando que aceptamos llamados de cualquier origen
