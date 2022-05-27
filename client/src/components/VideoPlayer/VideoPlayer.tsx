@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { Paper, Typography } from '@material-ui/core';
 import { useVideoPlayerStyles } from './videoPlayerStyles';
 import { SocketContext } from '../../context/Socket/SocketContext';
@@ -8,6 +8,12 @@ const VideoPlayer: FC = () => {
   const { myName, myVideoRef, otherUserVideoRef, call, callAccepted, callEnded, stream } = useContext(SocketContext);
 
   const styles = useVideoPlayerStyles();
+
+  useEffect(() => {
+    if (myVideoRef.current && stream) {
+      myVideoRef.current.srcObject = stream;
+    }
+  }, [stream]);
 
   return (
     <div className={styles.videoPlayerContainer}>
