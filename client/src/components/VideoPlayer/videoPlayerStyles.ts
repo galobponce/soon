@@ -12,6 +12,7 @@ export const useVideoPlayerStyles = makeStyles((theme: Theme) => createStyles({
 
 		[theme.breakpoints.down('xs')]: {
 			flexDirection: 'column',
+			gap: '10px',
 		}
 	},
 	videoPlayer: {
@@ -21,9 +22,9 @@ export const useVideoPlayerStyles = makeStyles((theme: Theme) => createStyles({
 		alignItems: 'center'
 	},
 	video: {
-		width: '650px',
+		width: '550px',
 		[theme.breakpoints.down('xs')]: {
-      width: '400px',
+      width: '300px',
     }
 	}
 }));
