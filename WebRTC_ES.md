@@ -7,7 +7,6 @@
 # <h1 style="border: none" id="resumen">Contenidos</h1>
 
 - <a href="#resumen">Resumen</a>
-- <a href="#como-esta-hecha">¿Cómo está hecha? :eyes:</a> 
 - <a href="#web-rtc">¿Qué es WebRTC?</a>
 - <a href="#web-sockets">Diferencia con WebSockets</a>
 - <a href="#como-funciona">¿Cómo funciona WebRTC por dentro?</a>
@@ -20,12 +19,6 @@
 Soon es una aplicación web para videochatear con quien sea desde tu navegador web.
 
 Tan solo se requiere una cámara y un micrófono en tu computadora. :camera: :microphone:
-
-# <h1 style="border: none" id="como-esta-hecha">¿Cómo está hecha?</h1>
-
-El cliente de la aplicación está hecho con React, Typescript y estilizada con Material UI.
-
-El servidor de la aplicación está hecho con Node.js y Typescript.
 
 Utiliza los protocolos de WebRTC para realizar el intercambio de datos entre clientes.
 
