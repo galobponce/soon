@@ -5,29 +5,25 @@ import { SocketContext } from '../../context/Socket/SocketContext';
 
 
 const VideoPlayer: FC = () => {
-  const { myName, myVideoRef, otherUserVideoRef, call, callAccepted, callEnded, myStream, otherUserStream } = useContext(SocketContext);
+  const { myName, myVideoRef, otherUserVideoRef, call, callAccepted, callEnded, stream } = useContext(SocketContext);
 
   const styles = useVideoPlayerStyles();
 
   useEffect(() => {
-    if (myVideoRef.current && myStream) {
-      myVideoRef.current.srcObject = myStream;
+    if (myVideoRef.current && stream) {
+      myVideoRef.current.srcObject = stream;
     }
-
-    if (otherUserVideoRef.current && otherUserStream) {
-      otherUserVideoRef.current.srcObject = otherUserStream;
-    }
-  }, [myStream, otherUserStream]);
+  }, [stream]);
 
   return (
     <div className={styles.videoPlayerContainer}>
-      {myStream.active && (
+      {stream.active && (
         <Paper className={styles.videoPlayer}>
           <Typography variant="h5" gutterBottom>{myName || 'Name'}</Typography>
           <video playsInline muted ref={myVideoRef} autoPlay className={styles.video} />
         </Paper>
       )}
-      {callAccepted && !callEnded && otherUserStream.active && (
+      {callAccepted && !callEnded && (
         <Paper className={styles.videoPlayer}>
           <Typography variant="h5" gutterBottom>{call.name || 'Name'}</Typography>
           <video playsInline ref={otherUserVideoRef} autoPlay className={styles.video} />

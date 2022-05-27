@@ -24,8 +24,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
   const [callEnded, setCallEnded] = useState<boolean>(false);
   const [callAccepted, setCallAccepted] = useState<boolean>(false);
   const [mySocketServerId, setMySocketServerId] = useState<string>('');
-  const [myStream, setMyStream] = useState<MediaStream>({} as MediaStream);
-  const [otherUserStream, setOtherUserStream] = useState<MediaStream>({} as MediaStream);
+  const [stream, setStream] = useState<MediaStream>({} as MediaStream);
 
   
   // Función que se ejecuta cuando se inicializa el componente
@@ -34,7 +33,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
     // Pido permisos para obtener el video y audio del usuario
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       .then((currentStream: MediaStream) => {
-        setMyStream(currentStream); // Almaceno el video y audio
+        setStream(currentStream); // Almaceno el video y audio
 
         // Seteo el audio y video del usuario en la ref
         myVideoRef.current.srcObject = currentStream;
@@ -56,7 +55,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
     setCallAccepted(true);
 
     // Creamos una instancia de Peer para realizar la conexión entre clientes
-    const peer = new Peer({ initiator: false, trickle: false, stream: myStream });
+    const peer = new Peer({ initiator: false, trickle: false, stream });
 
     // Cuando el otro usuario nos mande una señal de confirmación de
     // conexión, avisamos al server que queremos responder la llamada
@@ -67,7 +66,6 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
     // Cuando el otro usuario nos mande sus datos de video y
     // audio, los almacenamos
     peer.on('stream', (currentStream) => {
-      setOtherUserStream(currentStream);
       otherUserVideoRef.current.srcObject = currentStream;
     });
 
@@ -82,7 +80,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
   const callById = (id: string) => {
 
     // Creamos una instancia de Peer para realizar la conexión entre clientes
-    const peer = new Peer({ initiator: true, trickle: false, stream: myStream });
+    const peer = new Peer({ initiator: true, trickle: false, stream });
 
     // Cuando el otro usuario nos mande una señal de confirmación de
     // conexión, avisamos al server que queremos hacer una llamada
@@ -126,8 +124,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
       callEnded,
       callAccepted,
       mySocketServerId,
-      myStream,
-      otherUserStream,
+      stream,
       myVideoRef,
       otherUserVideoRef,
       answer,
