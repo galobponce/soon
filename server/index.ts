@@ -6,7 +6,7 @@ import { Server, Socket } from 'socket.io';
 const httpServer = http.createServer();
 
 
-const port = Number(process.env.DEFAULT_PORT) || 5500;
+const port = 8080;
 
 
 // Creamos un socket indicando que aceptamos llamados de cualquier origen
@@ -48,4 +48,4 @@ io.on("connection", (socket: Socket) => {
 
 
 // Corremos el servidor
-httpServer.listen(port, () => console.log(`http server running at port: ${port}`));
+httpServer.listen(process.env.PORT || port, () => console.log(`http server running at port: ${port}`));
