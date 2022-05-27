@@ -8,7 +8,8 @@ export interface ISocketContext {
 	callEnded: boolean;
 	callAccepted: boolean;
 	mySocketServerId: string;
-	stream: MediaStream;
+	myStream: MediaStream;
+	otherUserStream: MediaStream;
 	myVideoRef: RefObject<HTMLVideoElement>
 	otherUserVideoRef: RefObject<HTMLVideoElement>
 	answer: () => void;
