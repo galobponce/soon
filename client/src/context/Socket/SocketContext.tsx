@@ -1,5 +1,5 @@
 import { ICall } from '../../types/common';
-import { createContext, Dispatch, RefObject, SetStateAction } from "react";
+import { createContext, Dispatch, SetStateAction } from "react";
 
 export interface ISocketContext {
 	myName: string;
@@ -10,8 +10,8 @@ export interface ISocketContext {
 	mySocketServerId: string;
 	myStream: MediaStream;
 	otherUserStream: MediaStream;
-	myVideoRef: RefObject<HTMLVideoElement>
-	otherUserVideoRef: RefObject<HTMLVideoElement>
+	// myVideoRef: RefObject<HTMLVideoElement>
+	// otherUserVideoRef: RefObject<HTMLVideoElement>
 	answer: () => void;
 	callById: (id: string) => void;
 	leave: () => void;

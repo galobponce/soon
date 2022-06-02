@@ -13,9 +13,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
 
   
   // Referencias a objetos que se van a mostrar en pantalla
-  const myVideoRef = useRef<HTMLVideoElement>({} as HTMLVideoElement);
   const connectionRef = useRef<Instance>({} as Instance);
-  const otherUserVideoRef = useRef<HTMLVideoElement>({} as HTMLVideoElement);
 
   
   // Estado del contexto
@@ -35,9 +33,6 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       .then((currentStream: MediaStream) => {
         setMyStream(currentStream); // Almaceno el video y audio
-
-        // Seteo el audio y video del usuario en la ref
-        myVideoRef.current.srcObject = currentStream;
       });
 
     // Almaceno el id de nuestro socket server cuando nos lo manda
@@ -68,7 +63,6 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
     // audio, los almacenamos
     peer.on('stream', (currentStream) => {
       setOtherUserStream(currentStream);
-      otherUserVideoRef.current.srcObject = currentStream;
     });
 
     // Mandamos confirmación al otro cliente
@@ -98,7 +92,7 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
     // Cuando el otro usuario nos mande sus datos de video y
     // audio, los almacenamos
     peer.on('stream', (currentStream) => {
-      otherUserVideoRef.current.srcObject = currentStream;
+      setOtherUserStream(currentStream);
     });
 
     // Cuando el socket server nos manda los datos del otro cliente
@@ -128,8 +122,6 @@ export const SocketProvider: FC<IChildrenProps> = ({ children }) => {
       mySocketServerId,
       myStream,
       otherUserStream,
-      myVideoRef,
-      otherUserVideoRef,
       answer,
       callById,
       leave
