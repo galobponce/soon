@@ -10,8 +10,6 @@ export interface ISocketContext {
 	mySocketServerId: string;
 	myStream: MediaStream;
 	otherUserStream: MediaStream;
-	// myVideoRef: RefObject<HTMLVideoElement>
-	// otherUserVideoRef: RefObject<HTMLVideoElement>
 	answer: () => void;
 	callById: (id: string) => void;
 	leave: () => void;
